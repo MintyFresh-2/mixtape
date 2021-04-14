@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat&display=swap");
+body {
+  background-image: url(/images/wood-bg.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.permanent-marker {
+  font-family: "Permanent Marker", cursive;
+}
+
+.tape-recorder {
+  position: relative;
+  width: 48vh;
+  height: 80vh;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  margin-top: 10vh;
+  margin-left: 10vh;
+}
+
+.tape-recorder-image {
+  position: absolute;
+  height: 80vh;
+  left: 10vh;
+  top: 10vh;
+}
+
+.tape-video {
+  position: absolute;
+  z-index: 3;
+  height: 19.5vh;
+  left: 19.8vh;
+  top: 49.25vh;
+  visibility: visible;
+}
+
+.tape-video-alt {
+  position: absolute;
+  z-index: 3;
+  height: 19.5vh;
+  left: 19.8vh;
+  top: 49.25vh;
+  visibility: hidden;
+}
+
+.tape-name {
+  position: absolute;
+  z-index: 5;
+  left: 22vh;
+  top: 52.4vh;
+  width: 24.4vh;
+  height: 3vh;
+  background-color: #a99981;
+  color: #1a1714;
+  text-align: center;
+  font-size: 2vh;
+  font-family: "Permanent Marker", cursive;
+  border: none;
+}
+
+.tape-name::-webkit-input-placeholder {
+  color: #1a1714;
+  opacity: 1;
+}
+
+.tape-name:-ms-input-placeholder {
+  color: #1a1714;
+  opacity: 1;
+}
+
+.tape-name::-ms-input-placeholder {
+  color: #1a1714;
+  opacity: 1;
+}
+
+.tape-name::placeholder {
+  color: #1a1714;
+  opacity: 1;
+}
+
+.tape-name:enabled {
+  outline: none;
+}
+
+.tape-recorder-button {
+  padding: 0;
+  width: 5.1vh;
+  height: 7.7vh;
+  margin-bottom: 2.3vh;
+  background-color: transparent;
+  border: 0px solid white;
+  z-index: 1;
+}
+
+.tape-recorder-button-pressed {
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.2)), to(rgba(0, 0, 0, 0.5)));
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5));
+}
+
+.upload-mp3 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+
+#song-player {
+  position: absolute;
+}
+
+.tutorial {
+  background-image: "images/paper.png";
+  position: relative;
+  bottom: 20vh;
+  left: 10vh;
+  display: inline-block;
+  width: 50vh;
+  font-family: "Caveat", cursive;
+}
+
+.tutorial img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+.tutorial h4 {
+  margin-top: 15vh;
+  margin-left: 2vh;
+  font-size: 5vh;
+}
+
+.tutorial p {
+  margin-left: 3vh;
+  margin-right: 10vh;
+  font-size: 2vh;
+}
+/*# sourceMappingURL=style.css.map */
