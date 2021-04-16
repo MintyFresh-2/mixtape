@@ -10,6 +10,7 @@ const tapeRecorderState = {
 };
 const mixTape = [];
 const songPlayer = document.getElementById("song-player");
+const tapeEffectsPlayer = document.getElementById("tape-effects-player");
 const tapeVideo = document.querySelector(".tape-video");
 const tapeForwards = document.getElementById("tape-video-play");
 const tapeBackwards = document.getElementById("tape-video-rewind");
@@ -66,6 +67,9 @@ const playTape = function () {
     )
   ) {
     tapeRecorderState.play = true;
+    tapeEffectsPlayer.src = "sounds/playing.mp3";
+    tapeEffectsPlayer.loop = true;
+    tapeEffectsPlayer.play();
     $("#play").addClass("tape-recorder-button-pressed");
     clickOnSound.play();
     tapeVideo.play();
@@ -80,6 +84,9 @@ const rewindTape = function () {
     !tapeRecorderState.fastForward
   ) {
     tapeRecorderState.rewind = true;
+    tapeEffectsPlayer.src = "sounds/rewind.mp3";
+    tapeEffectsPlayer.loop = true;
+    tapeEffectsPlayer.play();
     // adjust visual elements
     $("#rewind").addClass("tape-recorder-button-pressed");
     clickOnSound.play();
@@ -97,11 +104,14 @@ const rewindTape = function () {
       if (songPlayer.currentTime <= 0 && tapeRecorderState.songNumber != 0) {
         tapeRecorderState.songNumber -= 1;
         songPlayer.src = mixTape[tapeRecorderState.songNumber];
+        songPlayer.pause();
         setTimeout(() => {
           songPlayer.currentTime = songPlayer.duration;
+          songPlayer.pause();
         }, 50);
       } else if (songPlayer.currentTime <= 0) {
         tapeRecorderState.rewind = false;
+        tapeEffectsPlayer.pause();
         forwards();
         songPlayer.pause();
         $("#rewind").removeClass("tape-recorder-button-pressed");
@@ -119,6 +129,9 @@ const fastForwardTape = function () {
     !tapeRecorderState.rewind
   ) {
     tapeRecorderState.fastForward = true;
+    tapeEffectsPlayer.src = "sounds/fast-forward.mp3";
+    tapeEffectsPlayer.loop = true;
+    tapeEffectsPlayer.play();
     // adjust visual elements
     $("#fast-forward").addClass("tape-recorder-button-pressed");
     clickOnSound.play();
@@ -149,6 +162,7 @@ const ejectTape = function () {
     }, 200);
   } else if (tapeRecorderState.play) {
     tapeRecorderState.play = false;
+    tapeEffectsPlayer.pause();
     tapeForwards.pause();
     $("#play").removeClass("tape-recorder-button-pressed");
     $("#eject").addClass("tape-recorder-button-pressed");
@@ -159,6 +173,7 @@ const ejectTape = function () {
     songPlayer.pause();
   } else if (tapeRecorderState.rewind) {
     tapeRecorderState.rewind = false;
+    tapeEffectsPlayer.pause();
     forwards();
     songPlayer.pause();
     $("#rewind").removeClass("tape-recorder-button-pressed");
@@ -170,6 +185,7 @@ const ejectTape = function () {
     }, 200);
   } else if (tapeRecorderState.fastForward) {
     tapeRecorderState.fastForward = false;
+    tapeEffectsPlayer.pause();
     tapeForwards.pause();
     tapeForwards.playbackRate = 1;
     songPlayer.pause();
@@ -185,6 +201,7 @@ const ejectTape = function () {
 const pauseTape = function () {
   if (tapeRecorderState.play && !tapeRecorderState.pause) {
     tapeRecorderState.pause = true;
+    tapeEffectsPlayer.pause();
     tapeForwards.pause();
     songPlayer.pause();
     $("#pause").addClass("tape-recorder-button-pressed");
@@ -193,6 +210,9 @@ const pauseTape = function () {
     tapeRecorderState.pause = false;
     tapeForwards.play();
     songPlayer.play();
+    tapeEffectsPlayer.src = "sounds/playing.mp3";
+    tapeEffectsPlayer.loop = true;
+    tapeEffectsPlayer.play();
     $("#pause").removeClass("tape-recorder-button-pressed");
     clickOffSound.play();
   }
@@ -206,6 +226,9 @@ $("#upload").on("input", function () {
   clickOnSound.play();
   tapeRecorderState.record = true;
   tapeForwards.play();
+  tapeEffectsPlayer.src = "sounds/recording.mp3";
+  tapeEffectsPlayer.loop = true;
+  tapeEffectsPlayer.play();
 });
 songPlayer.onended = function () {
   if (tapeRecorderState.record) {
@@ -215,6 +238,7 @@ songPlayer.onended = function () {
     clickOffSound.play();
     tapeRecorderState.record = false;
     tapeRecorderState.play = false;
+    tapeEffectsPlayer.pause();
     tapeForwards.pause();
     songPlayer.pause();
   } else if (tapeRecorderState.play) {
@@ -224,6 +248,7 @@ songPlayer.onended = function () {
       songPlayer.play();
     } else {
       tapeRecorderState.play = false;
+      tapeEffectsPlayer.pause();
       tapeForwards.pause();
       $("#play").removeClass("tape-recorder-button-pressed");
       clickOffSound.play();
@@ -233,8 +258,10 @@ songPlayer.onended = function () {
     if (tapeRecorderState.songNumber < mixTape.length - 1) {
       tapeRecorderState.songNumber += 1;
       songPlayer.src = mixTape[tapeRecorderState.songNumber];
+      songPlayer.pause();
     } else {
       tapeRecorderState.fastForward = false;
+      tapeEffectsPlayer.pause();
       songPlayer.pause();
       tapeForwards.pause();
       tapeForwards.playbackRate = 1;

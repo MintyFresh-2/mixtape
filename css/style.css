@@ -123,9 +123,9 @@ body {
 .tutorial {
   background-image: "images/paper.png";
   position: relative;
-  bottom: 20vh;
-  left: 10vh;
   display: inline-block;
+  left: 10vh;
+  bottom: -10vh;
   width: 50vh;
   font-family: "Caveat", cursive;
 }
@@ -148,5 +148,11 @@ body {
   margin-left: 3vh;
   margin-right: 10vh;
   font-size: 2vh;
+}
+
+@media all and (orientation: landscape) {
+  .tutorial {
+    bottom: 20vh;
+  }
 }
 /*# sourceMappingURL=style.css.map */
